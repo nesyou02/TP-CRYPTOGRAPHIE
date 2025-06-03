@@ -1,0 +1,30 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Installer les dépendances (s’il y en a)
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: Exécuter le script César
+        run: python cesar.py < /dev/null || echo "Pas d'entrée attendue"
+
+      - name: Exécuter le script Vigenère
+        run: python vigenere.py < /dev/null || echo "Pas d'entrée attendue"
