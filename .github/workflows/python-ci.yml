@@ -11,20 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v3
+    - name: Récupérer le code
+      uses: actions/checkout@v3
 
-      - name: Installer Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+    - name: Installer Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
-      - name: Installer les dépendances (s’il y en a)
-        run: |
-          pip install -r requirements.txt || true
+    - name: Installer les dépendances (s’il y en a)
+      run: |
+        pip install -r requirements.txt || true
 
-      - name: Exécuter le script César
-        run: python cesar.py < /dev/null || echo "Pas d'entrée attendue"
+    - name: Exécuter le script César
+      run: python "cesar.py" < /dev/null || echo "Pas d'entrée attendue"
 
-      - name: Exécuter le script Vigenère
-        run: python vigenere.py < /dev/null || echo "Pas d'entrée attendue"
+    - name: Exécuter le script Vigenère
+      run: python "vigenere.py" < /dev/null || echo "Pas d'entrée attendue"
+
+    - name: Exécuter le script Hill
+      run: python "Chiffrement et dechiffrement de Lester Hill.py" < /dev/null || echo "Pas d'entrée attendue"
+
+    - name: Exécuter le script Affine
+      run: python "Chiffrement et dechiffrement affine.py" < /dev/null || echo "Pas d'entrée attendue"
+
+    - name: Exécuter le script AES/RSA
+      run: python "Chiffrement et dechiffrement AES et RSA.py" < /dev/null || echo "Pas d'entrée attendue"
+
+    - name: Exécuter le script Entropie
+      run: python "Entropie- Redondance -Incide_de_ coincidence.py" < /dev/null || echo "Pas d'entrée attendue"
